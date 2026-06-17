@@ -1,9 +1,4 @@
-﻿body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-}/* Специфичные стили для страницы истории */
+﻿/* Специфичные стили для страницы истории */
 .content ul {
     margin: 20px 0;
     padding-left: 30px;
@@ -15,35 +10,18 @@
 }
 
 .content blockquote {
-    background: #e8f5e9;
-    border-left: 4px solid #2c5f2d;
+    background: #e8f0f8;
+    border-left: 5px solid #1a5276;
     padding: 15px 20px;
     margin: 20px 0;
     border-radius: 5px;
     font-style: italic;
+    color: #1a3a5a;
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .hero h1 {
-        font-size: 32px;
-    }
-    
-    .hero p {
-        font-size: 18px;
-    }
-    
-    .content p {
-        font-size: 16px;
-    }
-    
-    .map-container iframe {
-        height: 300px;
+    .content ul li {
+        font-size: 15px;
     }
 }
