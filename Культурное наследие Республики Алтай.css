@@ -1,38 +1,61 @@
 ﻿/* Стили для страницы культурного наследия */
-.heritage-card {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.1);
-    transition: transform 0.3s;
-    border-left: 4px solid #1a5276;
+
+/* Стили для карты */
+.map-container {
+    margin: 30px 0;
+    text-align: center;
 }
 
-.heritage-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 25px rgba(26, 82, 118, 0.15);
-}
-
-.heritage-card img {
+.map-image {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    max-width: 1000px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(26, 82, 118, 0.2);
+    border: 3px solid #2E86AB;
 }
 
-.heritage-card h3 {
-    color: #1a5276;
+.image-caption {
+    margin-top: 12px;
+    font-size: 16px;
+    color: #2c3e50;
+    font-style: italic;
+}
+
+/* Стили для списка наследия */
+.heritage-list {
+    list-style: none;
+    padding: 0;
+}
+
+.heritage-list li {
+    background: white;
+    padding: 15px 20px;
     margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border-left: 5px solid #1a5276;
+    font-size: 17px;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.heritage-card p {
-    font-size: 16px !important;
+.heritage-list li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.15);
 }
 
+.heritage-list li strong {
+    color: #1a5276;
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
-    .heritage-card {
-        padding: 15px;
+    .map-image {
+        border-radius: 8px;
+    }
+    
+    .heritage-list li {
+        font-size: 15px;
+        padding: 12px 16px;
     }
 }
