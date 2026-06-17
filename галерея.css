@@ -1,6 +1,5 @@
 /* Стили для страницы галереи */
 
-/* Контейнер для карты */
 .map-container {
     margin: 30px 0;
     text-align: center;
@@ -11,18 +10,17 @@
     max-width: 1000px;
     height: auto;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border: 3px solid #e8f5e9;
+    box-shadow: 0 4px 25px rgba(26, 82, 118, 0.2);
+    border: 3px solid #2E86AB;
 }
 
 .image-caption {
     margin-top: 12px;
     font-size: 16px;
-    color: #555;
+    color: #2c3e50;
     font-style: italic;
 }
 
-/* Сетка галереи */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -36,11 +34,13 @@
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 4px solid #1a5276;
 }
 
 .gallery-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 35px rgba(26, 82, 118, 0.2);
+    border-bottom-color: #2E86AB;
 }
 
 .gallery-item img {
@@ -54,16 +54,15 @@
     padding: 12px 16px;
     margin: 0;
     font-size: 15px;
-    color: #333;
+    color: #1a2a3a;
     text-align: center;
-    background: #f9f9f9;
+    background: #f8fafc;
     font-weight: 500;
 }
 
-/* Блок с инструкцией */
 .instruction-box {
-    background: #e8f5e9;
-    border-left: 5px solid #2c5f2d;
+    background: #e8f0f8;
+    border-left: 5px solid #1a5276;
     padding: 20px 30px;
     border-radius: 10px;
     margin: 25px 0;
@@ -81,11 +80,12 @@
 }
 
 .instruction-box code {
-    background: #c8e6c9;
-    padding: 2px 10px;
+    background: #d4e2f0;
+    padding: 2px 12px;
     border-radius: 4px;
     font-size: 14px;
-    color: #1b5e20;
+    color: #1a5276;
+    font-weight: 600;
 }
 
 /* Адаптивность */
