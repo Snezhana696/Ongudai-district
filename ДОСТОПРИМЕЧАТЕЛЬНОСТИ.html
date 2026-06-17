@@ -3,119 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Достопримечательности Онгудайского района</title>
+    <title>Культурное наследие Республики Алтай</title>
+    <link rel="stylesheet" href="Style.css">
     <link rel="stylesheet" href="достопримечательности.css">
 </head>
 <body>
-    <!-- Флаг Республики Алтай с навигацией -->
-    <div class="flag-container">
-        <div class="flag-stripe stripe-white-1"></div>
-        <div class="flag-stripe stripe-blue-1"></div>
-        <div class="flag-stripe stripe-white-2"></div>
-        <div class="flag-stripe stripe-blue-2"></div>
-
-        <div class="flag-content">
-            <div class="nav-links">
-                <a href="index.html">ГЛАВНАЯ</a>
-                <a href="о республике алтай.html">О РЕСПУБЛИКЕ АЛТАЙ</a>
-                <a href="история.html">ИСТОРИЯ</a>
-                <a href="ДОСТОПРИМЕЧАТЕЛЬНОСТИ.html">ДОСТОПРИМЕЧАТЕЛЬНОСТИ</a>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">О Республике Алтай</a></li>
+                <li><a href="история.html">История</a></li>
+                <li><a href="культурное-наследие.html" class="active">Культурное наследие</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Культурное наследие Республики Алтай</h1>
+            <p>Объекты культурного наследия на карте</p>
+        </section>
+        <section class="content">
+            <h2>Карта культурного наследия</h2>
+            <div class="map-container">
+                <!-- Здесь будет ваша карта культурного наследия -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1995671.4480268098!2d82.6227288857518!3d51.44045087919906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x42c94c85f09b338d%3A0x39c63875c3b731b7!2z0KDQtdGB0L_Rg9Cx0LvQuNC60LAg0JDQu9GC0LDQuQ!5e0!3m2!1sru!2sru!4v1700000000000!5m2!1sru!2sru" 
+                        width="100%" 
+                        height="500" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                </iframe>
             </div>
-            <h1 class="header-title">ДОСТОПРИМЕЧАТЕЛЬНОСТИ ОНГУДАЙСКОГО РАЙОНА</h1>
-        </div>
-    </div>
-
-    <!-- Основной контент -->
-    <div class="content">
-        <!-- Достопримечательность 1 -->
-        <div class="attraction">
-            <img src="https://img.tourister.ru/files/2/1/2/6/7/4/6/3/clones/870_600_fixedwidth.jpg" alt="Семинский перевал" class="attraction-img">
-            <h2>Семинский перевал</h2>
-            <p>Семинский перевал — один из самых высоких на Чуйском тракте, расположен на высоте 1717 метров над уровнем моря. На вершине установлена стела в честь 200-летия добровольного вхождения алтайского народа в состав России (1756 год).</p>
-            <p><strong>Интересный факт:</strong> Название перевала происходит от монгольского слова «себи», что означает «крепость». Алтайское название — Дьал-Менку («Вечная грива»). </p>
-        </div>
-
-        <!-- Достопримечательность 2 -->
-        <div class="attraction">
-            <img src="https://a.d-cd.net/5f7cd9s-1920.jpg" alt="Перевал Чике-Таман" class="attraction-img">
-            <h2>Перевал Чике-Таман</h2>
-            <p>Исторический перевал на Чуйском тракте (высота 1295 м) с потрясающими видами на долину реки Катунь. На перевале есть смотровая площадка и сувенирные лавки.</p>
-            <p><strong>Интересный факт:</strong> Старое название перевала - "Прямая подошва" из-за его крутых склонов.</p>
-        </div>
-
-        <!-- Достопримечательность 3 -->
-        <div class="attraction">
-            <img src="https://i-a.d-cd.net/h1AAAgGysuA-1920.jpg" alt="Природный парк Уч-Энмек" class="attraction-img">
-            <h2>Природный парк "Уч-Энмек"</h2>
-            <p>Сакральная территория с древними памятниками культуры, каменными изваяниями и курганами. Парк занимает площадь 605 кв.км и является объектом культурного наследия.</p>
-            <p><strong>Что посмотреть:</strong> Петроглифы, каменные стелы, священные источники.</p>
-        </div>
-
-        <!-- Достопримечательность 4 -->
-        <div class="attraction">
-            <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_65ec6d69dc70594212d273f2_65ec6e68c99c2b195785f542/scale_1200" alt="Башадарские курганы" class="attraction-img">
-            <h2>Башадарские курганы</h2>
-            <p>Археологический памятник в урочище Башадар Онгудайского района Республики Алтай. Относится к эпохе раннего железа (VI–III вв. до н. э.) и принадлежит пазырыкской культуре. </p>
-            <p><strong>Где посмотреть:</strong> Башадарские курганы доступны для посещения в урочище Башадар на территории природного парка Уч-Энмек.</p>
-        </div>
-    </div>
-    <!-- Достопримечательность 5 -->
-    <div class="attraction">
-        <img src="https://cf.youtravel.me/tr:w-1500/upload/tours/1ce/1ced704fb7fd97ff96a9550cf2a6920f.jpg" alt="Место слияния Чуи и Катуни" class="attraction-img">
-        <h2>Место слияния Чуи и Катуни</h2>
-        <p>Это священное для алтайцев место, где спокойные, чистые воды Катуни принимают мутные воды Чуи. Если посмотреть на гору, расположенную над слиянием, можно разглядеть голову богатыря и голову лошади. </p>
-        <p><strong>Где посмотреть:</strong> Находится на 712-м км Чуйского тракта.</p>
-    </div>
-    </div>
-    <div class="zeemap-link">
-        <h2>Интерактивная карта достопримечательностей</h2>
-        <p>Посмотрите все достопримечательности Онгудайского района на интерактивной карте</p>
-        <a href="https://www.zeemaps.com/map/iykvo?group=4560206" target="_blank" class="zeemap-button">
-            <i class="fas fa-map-marked-alt"></i> Открыть карту Zeemaps
-        </a>
-    </div>
-
-    <div class="button-container">
-        <a href="главная страница.html" class="back-button">
-            <i class="fas fa-arrow-left"></i> Назад на главную
-        </a>
-    </div>
-    </div>
-
-    <!-- Футер с контактами -->
-    <div class="footer-navigation">
-        <div class="footer-contacts">
-            <div class="contact-block">
-                <div class="contact-title">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Адрес</span>
-                </div>
-                <div class="contact-info">
-                    649440, Республика Алтай,<br>с. Онгудай, ул. Советская, 32
-                </div>
-            </div>
-
-            <div class="contact-block">
-                <div class="contact-title">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>Телефоны</span>
-                </div>
-                <div class="contact-info">
-                    <a href="tel:+73884522146">+7 (388-45) 2-21-46</a><br>
-                    <a href="tel:+73884522146">+7 (388-45) 2-21-46</a> (факс)
-                </div>
-            </div>
-
-            <div class="contact-block">
-                <div class="contact-title">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email</span>
-                </div>
-                <div class="contact-info">
-                    <a href="mailto:onguday@mail.ru">onguday@mail.ru</a>
-                </div>
-            </div>
-        </div>
-    </div>
+            <p><em>На карте отмечены основные объекты культурного наследия Республики Алтай: курганы, петроглифы, музеи и другие памятники.</em></p>
+            
+            <h2>Объекты культурного наследия</h2>
+            <ul class="heritage-list">
+                <li><strong>Пазырыкские курганы</strong> — древние захоронения скифской эпохи, всемирно известные археологические памятники.</li>
+                <li><strong>Петроглифы Калбак-Таша</strong> — наскальные рисунки возрастом до 5000 лет.</li>
+                <li><strong>Горно-Алтайский музей</strong> — хранит уникальные коллекции археологических находок.</li>
+                <li><strong>Культовые места алтайцев</strong> — священные горы, перевалы и источники.</li>
+                <li><strong>Традиционные поселения</strong> — сохранившие архитектуру и уклад жизни коренных народов.</li>
+                <li><strong>Этнографические центры</strong> — места сохранения и возрождения алтайской культуры.</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Республика Алтай</p>
+    </footer>
 </body>
 </html>
