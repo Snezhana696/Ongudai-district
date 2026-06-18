@@ -1,18 +1,29 @@
 ﻿/* Стили для страницы культурного наследия */
 
-/* Стили для карты */
+/* Контейнер-окно для карты */
 .map-container {
     margin: 30px 0;
     text-align: center;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 25px rgba(26, 82, 118, 0.15);
+    border: 2px solid #e0e8f0;
+    transition: box-shadow 0.3s ease;
 }
 
+.map-container:hover {
+    box-shadow: 0 6px 35px rgba(26, 82, 118, 0.25);
+}
+
+/* Сама картинка — БЕЗ синей рамки */
 .map-image {
     width: 100%;
     max-width: 1000px;
     height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 25px rgba(26, 82, 118, 0.2);
-    border: 3px solid #2E86AB;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
 }
 
 .image-caption {
@@ -50,8 +61,13 @@
 
 /* Адаптивность */
 @media (max-width: 768px) {
-    .map-image {
+    .map-container {
+        padding: 10px;
         border-radius: 8px;
+    }
+    
+    .map-image {
+        border-radius: 6px;
     }
     
     .heritage-list li {
