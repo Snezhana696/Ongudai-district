@@ -26,17 +26,35 @@
         <section class="content">
             <h2>Карта культурного наследия</h2>
             <div class="map-container">
-                <!-- ВАША КАРТА PNG -->
-                <img src="1.1.png" alt="Карта культурного наследия Республики Алтай" class="map-image" id="mapImage">
-                
-                <!-- КНОПКИ МАСШТАБИРОВАНИЯ -->
-                <div class="zoom-controls">
-                    <button class="zoom-btn" onclick="zoomIn()">➕ Увеличить</button>
-                    <button class="zoom-btn zoom-reset" onclick="zoomReset()">⟲ Сброс</button>
-                    <button class="zoom-btn" onclick="zoomOut()">➖ Уменьшить</button>
+                <!-- КОНТЕЙНЕР ДЛЯ КАРТЫ С ПАНОРАМИРОВАНИЕМ -->
+                <div class="map-wrapper">
+                    <div class="map-viewport" id="mapViewport">
+                        <img src="1.1.png" alt="Карта культурного наследия Республики Алтай" class="map-image" id="mapImage">
+                    </div>
                 </div>
                 
-                <p class="image-caption">Карта культурного наследия Республики Алтай</p>
+                <!-- КНОПКИ УПРАВЛЕНИЯ -->
+                <div class="map-controls">
+                    <!-- Стрелки для движения -->
+                    <div class="direction-controls">
+                        <button class="dir-btn" onclick="moveMap('up')">⬆</button>
+                        <div class="middle-row">
+                            <button class="dir-btn" onclick="moveMap('left')">⬅</button>
+                            <button class="dir-btn reset-btn" onclick="resetMap()">⟲</button>
+                            <button class="dir-btn" onclick="moveMap('right')">➡</button>
+                        </div>
+                        <button class="dir-btn" onclick="moveMap('down')">⬇</button>
+                    </div>
+                    
+                    <!-- Зум-кнопки -->
+                    <div class="zoom-controls">
+                        <button class="zoom-btn" onclick="zoomIn()">➕</button>
+                        <span class="zoom-level" id="zoomLevel">100%</span>
+                        <button class="zoom-btn" onclick="zoomOut()">➖</button>
+                    </div>
+                </div>
+                
+                <p class="image-caption">Карта культурного наследия Республики Алтай (кликните на карту и перетаскивайте для перемещения)</p>
             </div>
             
             <h2>Объекты культурного наследия</h2>
@@ -54,37 +72,98 @@
         <p>&copy; 2026 Республика Алтай</p>
     </footer>
 
-    <!-- СКРИПТ ДЛЯ МАСШТАБИРОВАНИЯ -->
+    <!-- СКРИПТ ДЛЯ УПРАВЛЕНИЯ КАРТОЙ -->
     <script>
         let currentZoom = 1;
+        let posX = 0;
+        let posY = 0;
+        let isDragging = false;
+        let startX, startY, startPosX, startPosY;
+        
         const mapImage = document.getElementById('mapImage');
+        const viewport = document.getElementById('mapViewport');
+        const zoomLevel = document.getElementById('zoomLevel');
 
+        // Функции масштабирования
         function zoomIn() {
             if (currentZoom < 2.5) {
-                currentZoom += 0.2;
-                mapImage.style.transform = `scale(${currentZoom})`;
-                mapImage.style.cursor = 'zoom-out';
+                currentZoom += 0.1;
+                updateMap();
             }
         }
 
         function zoomOut() {
             if (currentZoom > 0.5) {
-                currentZoom -= 0.2;
-                mapImage.style.transform = `scale(${currentZoom})`;
-                if (currentZoom <= 1) {
-                    mapImage.style.cursor = 'zoom-in';
-                }
+                currentZoom -= 0.1;
+                updateMap();
             }
         }
 
-        function zoomReset() {
+        function resetMap() {
             currentZoom = 1;
-            mapImage.style.transform = 'scale(1)';
-            mapImage.style.cursor = 'zoom-in';
+            posX = 0;
+            posY = 0;
+            updateMap();
         }
 
-        // Масштабирование колёсиком мыши
-        mapImage.addEventListener('wheel', function(e) {
+        // Функции движения
+        function moveMap(direction) {
+            const step = 50 / currentZoom;
+            switch(direction) {
+                case 'up': posY += step; break;
+                case 'down': posY -= step; break;
+                case 'left': posX += step; break;
+                case 'right': posX -= step; break;
+            }
+            updateMap();
+        }
+
+        // Обновление карты
+        function updateMap() {
+            mapImage.style.transform = `translate(${posX}px, ${posY}px) scale(${currentZoom})`;
+            zoomLevel.textContent = Math.round(currentZoom * 100) + '%';
+            
+            if (currentZoom > 1) {
+                mapImage.style.cursor = 'grab';
+            } else {
+                mapImage.style.cursor = 'default';
+            }
+        }
+
+        // Drag & Drop (перетаскивание мышью)
+        mapImage.addEventListener('mousedown', function(e) {
+            if (currentZoom > 1) {
+                isDragging = true;
+                startX = e.clientX;
+                startY = e.clientY;
+                startPosX = posX;
+                startPosY = posY;
+                mapImage.style.cursor = 'grabbing';
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+                posX = startPosX + dx;
+                posY = startPosY + dy;
+                updateMap();
+            }
+        });
+
+        document.addEventListener('mouseup', function() {
+            if (isDragging) {
+                isDragging = false;
+                if (currentZoom > 1) {
+                    mapImage.style.cursor = 'grab';
+                }
+            }
+        });
+
+        // Масштабирование колёсиком
+        viewport.addEventListener('wheel', function(e) {
             e.preventDefault();
             if (e.deltaY < 0) {
                 zoomIn();
@@ -92,6 +171,47 @@
                 zoomOut();
             }
         });
+
+        // Клавиатурные shortcuts
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case '+': e.preventDefault(); zoomIn(); break;
+                case '-': e.preventDefault(); zoomOut(); break;
+                case 'ArrowUp': e.preventDefault(); moveMap('up'); break;
+                case 'ArrowDown': e.preventDefault(); moveMap('down'); break;
+                case 'ArrowLeft': e.preventDefault(); moveMap('left'); break;
+                case 'ArrowRight': e.preventDefault(); moveMap('right'); break;
+                case 'r': e.preventDefault(); resetMap(); break;
+            }
+        });
+
+        // Сенсорная поддержка (для телефонов)
+        let touchStartX, touchStartY, touchPosX, touchPosY;
+        
+        mapImage.addEventListener('touchstart', function(e) {
+            if (e.touches.length === 1 && currentZoom > 1) {
+                const touch = e.touches[0];
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+                touchPosX = posX;
+                touchPosY = posY;
+            }
+        });
+
+        mapImage.addEventListener('touchmove', function(e) {
+            if (e.touches.length === 1 && currentZoom > 1) {
+                const touch = e.touches[0];
+                const dx = touch.clientX - touchStartX;
+                const dy = touch.clientY - touchStartY;
+                posX = touchPosX + dx;
+                posY = touchPosY + dy;
+                updateMap();
+                e.preventDefault();
+            }
+        });
+
+        // Инициализация
+        updateMap();
     </script>
 </body>
 </html>
