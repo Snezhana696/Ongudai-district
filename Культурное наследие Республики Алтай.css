@@ -10,13 +10,15 @@
     box-shadow: 0 4px 25px rgba(26, 82, 118, 0.15);
     border: 2px solid #e0e8f0;
     transition: box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .map-container:hover {
     box-shadow: 0 6px 35px rgba(26, 82, 118, 0.25);
 }
 
-/* Сама картинка — БЕЗ синей рамки */
+/* Сама картинка — с возможностью масштабирования */
 .map-image {
     width: 100%;
     max-width: 1000px;
@@ -24,6 +26,55 @@
     border-radius: 8px;
     display: block;
     margin: 0 auto;
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+}
+
+.map-image:active {
+    cursor: zoom-out;
+}
+
+/* Масштабирование при наведении (колёсико мыши) */
+.map-image:hover {
+    transform: scale(1.05);
+}
+
+/* Кнопки масштабирования */
+.zoom-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.zoom-btn {
+    background: #1a5276;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 2px 10px rgba(26, 82, 118, 0.2);
+}
+
+.zoom-btn:hover {
+    background: #2E86AB;
+    transform: scale(1.05);
+}
+
+.zoom-btn:active {
+    transform: scale(0.95);
+}
+
+.zoom-reset {
+    background: #6c757d;
+}
+
+.zoom-reset:hover {
+    background: #5a6268;
 }
 
 .image-caption {
@@ -68,6 +119,11 @@
     
     .map-image {
         border-radius: 6px;
+    }
+    
+    .zoom-btn {
+        padding: 8px 18px;
+        font-size: 16px;
     }
     
     .heritage-list li {
