@@ -26,8 +26,16 @@
         <section class="content">
             <h2>Карта культурного наследия</h2>
             <div class="map-container">
-                <!-- СЮДА ВСТАВЛЯЙТЕ ВАШУ КАРТУ КАК PNG -->
-                <img src="1.1.png" alt="Карта культурного наследия Республики Алтай" class="map-image">
+                <!-- ВАША КАРТА PNG -->
+                <img src="1.1.png" alt="Карта культурного наследия Республики Алтай" class="map-image" id="mapImage">
+                
+                <!-- КНОПКИ МАСШТАБИРОВАНИЯ -->
+                <div class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomIn()">➕ Увеличить</button>
+                    <button class="zoom-btn zoom-reset" onclick="zoomReset()">⟲ Сброс</button>
+                    <button class="zoom-btn" onclick="zoomOut()">➖ Уменьшить</button>
+                </div>
+                
                 <p class="image-caption">Карта культурного наследия Республики Алтай</p>
             </div>
             
@@ -45,5 +53,45 @@
     <footer>
         <p>&copy; 2026 Республика Алтай</p>
     </footer>
+
+    <!-- СКРИПТ ДЛЯ МАСШТАБИРОВАНИЯ -->
+    <script>
+        let currentZoom = 1;
+        const mapImage = document.getElementById('mapImage');
+
+        function zoomIn() {
+            if (currentZoom < 2.5) {
+                currentZoom += 0.2;
+                mapImage.style.transform = `scale(${currentZoom})`;
+                mapImage.style.cursor = 'zoom-out';
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > 0.5) {
+                currentZoom -= 0.2;
+                mapImage.style.transform = `scale(${currentZoom})`;
+                if (currentZoom <= 1) {
+                    mapImage.style.cursor = 'zoom-in';
+                }
+            }
+        }
+
+        function zoomReset() {
+            currentZoom = 1;
+            mapImage.style.transform = 'scale(1)';
+            mapImage.style.cursor = 'zoom-in';
+        }
+
+        // Масштабирование колёсиком мыши
+        mapImage.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        });
+    </script>
 </body>
 </html>
