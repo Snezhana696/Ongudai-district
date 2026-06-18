@@ -16,7 +16,7 @@
     box-shadow: 0 6px 35px rgba(26, 82, 118, 0.25);
 }
 
-/* Обёртка для карты с обрезкой */
+/* Обёртка для карты */
 .map-wrapper {
     position: relative;
     overflow: hidden;
@@ -24,17 +24,17 @@
     background: #f5f7fa;
 }
 
-/* Область просмотра */
+/* Область просмотра — карта на всю рамку */
 .map-viewport {
     width: 100%;
-    height: 500px;
+    height: 550px;
     overflow: hidden;
     position: relative;
     border-radius: 8px;
     background: #f5f7fa;
 }
 
-/* Сама картинка */
+/* Сама картинка — на всю ширину */
 .map-image {
     width: 100%;
     height: auto;
@@ -45,50 +45,60 @@
     -webkit-user-drag: none;
 }
 
-/* Панель управления */
-.map-controls {
+/* ===== КНОПКИ ПОВЕРХ КАРТЫ ===== */
+.map-controls-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-    gap: 20px;
-    flex-wrap: wrap;
+    align-items: flex-end;
+    padding: 0 20px;
+    pointer-events: none;
+    z-index: 10;
 }
 
-/* Кнопки направления (стрелки) */
+.map-controls-overlay * {
+    pointer-events: auto;
+}
+
+/* Стрелки движения — в левом нижнем углу */
 .direction-controls {
     display: grid;
-    grid-template-columns: 50px 50px 50px;
-    grid-template-rows: 50px 50px 50px;
-    gap: 5px;
-    justify-items: center;
-    align-items: center;
-    margin: 0 auto;
+    grid-template-columns: 40px 40px 40px;
+    grid-template-rows: 40px 40px 40px;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .dir-btn {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     background: #1a5276;
     color: white;
-    font-size: 24px;
+    font-size: 16px;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
-    box-shadow: 0 2px 8px rgba(26, 82, 118, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .dir-btn:hover {
     background: #2E86AB;
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .dir-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.92);
 }
 
 /* Расположение стрелок */
@@ -100,59 +110,67 @@
 
 .reset-btn {
     background: #6c757d;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .reset-btn:hover {
     background: #5a6268;
 }
 
-/* Кнопки зума */
+/* Зум-кнопки — в правом нижнем углу */
 .zoom-controls {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    background: white;
-    padding: 5px 10px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    border: 1px solid #e0e8f0;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .zoom-btn {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     background: #1a5276;
     color: white;
     font-size: 22px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .zoom-btn:hover {
     background: #2E86AB;
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .zoom-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.92);
 }
 
 .zoom-level {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
     color: #1a5276;
     min-width: 50px;
     text-align: center;
+    padding: 4px 0;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
 }
 
 .image-caption {
     margin-top: 12px;
-    font-size: 16px;
-    color: #2c3e50;
+    font-size: 15px;
+    color: #4a5a6a;
     font-style: italic;
 }
 
@@ -182,7 +200,7 @@
     color: #1a5276;
 }
 
-/* Адаптивность */
+/* ===== АДАПТИВНОСТЬ ===== */
 @media (max-width: 768px) {
     .map-container {
         padding: 10px;
@@ -190,35 +208,41 @@
     }
     
     .map-viewport {
-        height: 350px;
+        height: 380px;
     }
     
-    .dir-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
+    .map-controls-overlay {
+        bottom: 12px;
+        padding: 0 12px;
     }
     
     .direction-controls {
-        grid-template-columns: 40px 40px 40px;
-        grid-template-rows: 40px 40px 40px;
+        grid-template-columns: 34px 34px 34px;
+        grid-template-rows: 34px 34px 34px;
+        gap: 3px;
+        padding: 6px;
+    }
+    
+    .dir-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+    
+    .zoom-controls {
+        padding: 6px 8px;
         gap: 4px;
     }
     
     .zoom-btn {
-        width: 35px;
-        height: 35px;
+        width: 38px;
+        height: 38px;
         font-size: 18px;
     }
     
     .zoom-level {
-        font-size: 14px;
+        font-size: 12px;
         min-width: 40px;
-    }
-    
-    .map-controls {
-        flex-direction: column;
-        gap: 10px;
     }
     
     .heritage-list li {
@@ -229,18 +253,48 @@
 
 @media (max-width: 480px) {
     .map-viewport {
-        height: 250px;
+        height: 280px;
     }
     
-    .dir-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 16px;
+    .map-controls-overlay {
+        bottom: 8px;
+        padding: 0 8px;
     }
     
     .direction-controls {
-        grid-template-columns: 35px 35px 35px;
-        grid-template-rows: 35px 35px 35px;
+        grid-template-columns: 28px 28px 28px;
+        grid-template-rows: 28px 28px 28px;
+        gap: 2px;
+        padding: 4px;
+        border-radius: 8px;
+    }
+    
+    .dir-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+        border-radius: 6px;
+    }
+    
+    .reset-btn {
+        font-size: 13px;
+    }
+    
+    .zoom-controls {
+        padding: 4px 6px;
         gap: 3px;
+        border-radius: 8px;
+    }
+    
+    .zoom-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+        border-radius: 6px;
+    }
+    
+    .zoom-level {
+        font-size: 10px;
+        min-width: 32px;
     }
 }
